@@ -13,11 +13,17 @@ function nextSequence() {
 var latestColor = nextSequence();
 
 $("#" + latestColor).fadeTo(100, 0).fadeTo(100, 1);
-var audio = new Audio ("./sounds/" + latestColor + ".mp3");
-audio.play();
+    var audio = new Audio ("./sounds/" + latestColor + ".mp3");
+    audio.play();
 
 $(".btn").on("click", function () {
     var userChosenColor = $(this).attr("id");
     userClickedPattern.push(userChosenColor);
-    console.log(userClickedPattern);
-})
+    playSound(userChosenColor)
+});
+
+function playSound(name) {
+    var audio = new Audio ("./sounds/" + name + ".mp3");
+    audio.play();
+}
+
