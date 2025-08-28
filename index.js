@@ -10,6 +10,10 @@ function nextSequence() {
     return randomChosenColors; 
 }
 
+$(nextSequence).on("keypress", function () {
+    
+})
+
 var latestColor = nextSequence();
 
 $("#" + latestColor).fadeTo(100, 0).fadeTo(100, 1);
@@ -19,11 +23,19 @@ $("#" + latestColor).fadeTo(100, 0).fadeTo(100, 1);
 $(".btn").on("click", function () {
     var userChosenColor = $(this).attr("id");
     userClickedPattern.push(userChosenColor);
-    playSound(userChosenColor)
+    playSound(userChosenColor);
+    animatePress(userChosenColor);
 });
 
 function playSound(name) {
     var audio = new Audio ("./sounds/" + name + ".mp3");
     audio.play();
+}
+
+function animatePress(currentColor) {
+    $("#" + currentColor).addClass("pressed");
+    setTimeout(function() {
+        $("#" + currentColor).removeClass("pressed");
+    }, 100)
 }
 
